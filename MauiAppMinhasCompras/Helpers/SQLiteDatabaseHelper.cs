@@ -23,13 +23,14 @@ namespace MauiAppMinhasCompras.Helpers // define o namespace Helpers para organi
             string sql = "UPDATE Produto SET Descricao=?, Quantidade=?, Preco=? WHERE Id=?"; // string de consulta SQL para atualizar um produto com base no ID com os marcadores de parâmetros para evitar injeção de SQL
 
             return _conn.QueryAsync<Produto>(
-                sql, p.Descricao, p.Quantidade, p.Preco, p.Id
-            ); // executa a consulta SQL de atualização e retorna uma lista de produtos atualizados com os marcadores de parâmetros preenchidos com os valores do produto fornecido com a ordem dos paramentros respeitando a string SQL
+            sql, p.Descricao, p.Quantidade, p.Preco, p.Id); 
+     // executa a consulta SQL de atualização e retorna uma lista de produtos atualizados com os marcadores de parâmetros preenchidos com os valores do produto fornecido com a ordem dos paramentros respeitando a string SQL
         }
 
         public Task<int> Delete(int id) // método para excluir um produto do banco de dados pelo seu ID como uma tarefa que retorna um inteiro representando o número de linhas afetadas
         {
-            return _conn.Table<Produto>().DeleteAsync(i => i.Id == id); // executa a exclusão assíncrona do produto com o ID fornecido e retorna o número de linhas afetadas
+            return _conn.Table<Produto>().DeleteAsync(i => i.Id == id); 
+            // executa a exclusão assíncrona do produto com o ID fornecido e retorna o número de linhas afetadas utilizado de uma linha de código lambda para filtrar o produto pelo ID
         }
 
         public Task<List<Produto>> GetAll() // método para obter todos os produtos do banco de dados como uma tarefa que retorna uma lista de produtos
